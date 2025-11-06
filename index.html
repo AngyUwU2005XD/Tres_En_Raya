@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tres en Raya</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Tres en Raya</h1>
+  <!--Inicio del Formulario para los Jugadores-->
+  <section id="inicio">
+      <form id="jugadores">
+          <label for="jugador1">Jugador 1: </label>
+          <input id="jugador1" name="jugador1" required>
+          
+          <label for="jugador2">Jugador 2: </label>
+          <input id="jugador2" name="jugador2" required>
+          
+          <label for="empieza">Empieza:</label>
+          <select id="empieza" name="empieza">
+              <option value="X">Jugador 1 (X)</option>
+              <option value="O">Jugador 2 (O)</option>
+            </select>
+            <button type="submit" class="redondiado">Iniciar partida</button>  
+        </form>
+    </section>
+    <div id="app"></div>
+    <!--Inicio de la Tabla para Jugar-->
+    <section id="tablero">
+        <div class="info">
+            <p id="turno" aria-live="polite">Turno: </p>
+            <p id="tiempo">Tiempo: 00:00</p>
+            <p id="movimientos">Movimientos:</p>
+        </div>
+
+        <div class="grid" role="grid">
+            <button class="celda" role="gridcell" data-index="0"></button>
+            <button class="celda" role="gridcell" data-index="1"></button>
+            <button class="celda" role="gridcell" data-index="2"></button>
+            <button class="celda" role="gridcell" data-index="3"></button>
+            <button class="celda" role="gridcell" data-index="4"></button>
+            <button class="celda" role="gridcell" data-index="5"></button>
+            <button class="celda" role="gridcell" data-index="6"></button>
+            <button class="celda" role="gridcell" data-index="7"></button>
+            <button class="celda" role="gridcell" data-index="8"></button>
+        </div>
+
+        <div class="acciones">
+            <button id="btn-revancha" class="redondiado">Revancha</button>
+            <button id="btn-nuevo" class="redondiado">Nueva Partida</button>
+        </div>
+
+    </section>
+    
+    <script type="module" src="js/game.js"></script>
+</body>
+</html>
