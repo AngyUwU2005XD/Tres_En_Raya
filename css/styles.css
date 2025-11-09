@@ -91,4 +91,13 @@ h1 {
   }
 }
 
+#tablero {
+  display: none;
+}
+
+.celda img.marca {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  pointer-events: none; /* evita clics sobre la imagen */
 }
