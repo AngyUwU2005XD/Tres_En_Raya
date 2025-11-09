@@ -20,17 +20,14 @@ const btnIniciar = document.getElementById("btn-iniciar");
 const btnRevancha = document.getElementById("btn-revancha");
 
 btnIniciar.addEventListener("click", () => {
-  sonidoBoton.currentTime = 0; // Reinicia el sonido por si ya estaba sonando
   sonidoBoton.play();
 });
 
 btnRevancha.addEventListener("click", () => {
-  sonidoBoton.currentTime = 0;
   sonidoBoton.play();
 });
 
 btnNuevo.addEventListener("click", () => {
-  sonidoBoton.currentTime = 0;
   sonidoBoton.play();
 });
 
