@@ -17,10 +17,6 @@ const movimientosTexto = document.getElementById("movimientos");
 const btnNuevo = document.getElementById("btn-nuevo");
 const btnRevancha = document.getElementById("btn-revancha");
 
-btnIniciar.addEventListener("click", () => 
-  { 
-    sonidoBoton.play(); 
-  }); 
 btnRevancha.addEventListener("click", () => 
   { 
     sonidoBoton.play(); 
@@ -46,6 +42,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   turnoActual = document.getElementById("empieza").value;
   iniciarPartida();
+  sonidoBoton.play();
 });
 
 
