@@ -1,6 +1,4 @@
-// js/game.js
 import { guardarPartida } from "./storage.js";
-
 
 console.log("Tres en Raya iniciado...");
 
@@ -15,21 +13,22 @@ const celdas = document.querySelectorAll(".celda");
 const turnoTexto = document.getElementById("turno");
 const tiempoTexto = document.getElementById("tiempo");
 const movimientosTexto = document.getElementById("movimientos");
+
 const btnNuevo = document.getElementById("btn-nuevo");
-const btnIniciar = document.getElementById("btn-iniciar");
 const btnRevancha = document.getElementById("btn-revancha");
 
-btnIniciar.addEventListener("click", () => {
-  sonidoBoton.play();
-});
-
-btnRevancha.addEventListener("click", () => {
-  sonidoBoton.play();
-});
-
-btnNuevo.addEventListener("click", () => {
-  sonidoBoton.play();
-});
+btnIniciar.addEventListener("click", () => 
+  { 
+    sonidoBoton.play(); 
+  }); 
+btnRevancha.addEventListener("click", () => 
+  { 
+    sonidoBoton.play(); 
+  }); 
+btnNuevo.addEventListener("click", () => 
+  { 
+    sonidoBoton.play(); 
+  });
 
 let jugador1 = "";
 let jugador2 = "";
@@ -39,23 +38,16 @@ let movimientos = 0;
 let tiempoInicio = null;
 let intervalo = null;
 
-tablero.style.display = "none";
 
+tablero.style.display = "none"; 
 
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  jugador1 = document.getElementById("jugador1").value.trim();
-  jugador2 = document.getElementById("jugador2").value.trim();
   turnoActual = document.getElementById("empieza").value;
-
-  if (!jugador1 || !jugador2) {
-    alert("Por favor, ingresa los nombres de ambos jugadores.");
-    return;
-  }
-
   iniciarPartida();
 });
+
 
 function iniciarPartida() {
   form.style.display = "none";
@@ -72,9 +64,10 @@ function iniciarPartida() {
   intervalo = setInterval(actualizarTiempo, 1000);
 }
 
+
 function limpiarCeldas() {
   celdas.forEach((celda) => {
-    celda.textContent = "";
+    celda.innerHTML = "";
     celda.disabled = false;
   });
 }
@@ -96,23 +89,28 @@ function actualizarTiempo() {
   tiempoTexto.textContent = `Tiempo: ${min}:${seg}`;
 }
 
+
 celdas.forEach((celda, index) => {
   celda.addEventListener("click", () => {
     if (tableroEstado[index] === "") {
       tableroEstado[index] = turnoActual;
+
       const img = document.createElement("img");
       img.src = turnoActual === "X" ? "../assets/X.png" : "../assets/O.png";
       img.alt = turnoActual;
       img.classList.add("marca");
       celda.appendChild(img);
-
       celda.disabled = true;
+
       movimientos++;
       actualizarMovimientos();
 
-        if (turnoActual === "X") {
+      if (turnoActual === "X")
+        {
           sonidoX.play();
-        } else {
+        } 
+      else 
+        {
           sonidoO.play();
         }
 
@@ -140,13 +138,11 @@ function verificarGanador() {
     [2, 4, 6],
   ];
 
-  return combinaciones.some(([a, b, c]) => {
-    return (
-      tableroEstado[a] &&
-      tableroEstado[a] === tableroEstado[b] &&
-      tableroEstado[a] === tableroEstado[c]
-    );
-  });
+  return combinaciones.some(([a, b, c]) =>
+    tableroEstado[a] &&
+    tableroEstado[a] === tableroEstado[b] &&
+    tableroEstado[a] === tableroEstado[c]
+  );
 }
 
 function finalizarPartida(resultado) {
@@ -163,25 +159,36 @@ function finalizarPartida(resultado) {
   }
 
   const duracion = tiempoTexto.textContent.replace("Tiempo: ", "");
+
+  // 📅 Fecha legible en formato local (Ecuador)
+  const fecha = new Date();
+  const fechaFormateada = fecha.toLocaleString('es-EC', {
+    dateStyle: 'short',
+    timeStyle: 'medium'
+  });
+
   const partida = {
     jugador1,
     jugador2,
     ganador,
     duracion,
     movimientos,
-    fecha: new Date().toISOString(),
+    fecha: fechaFormateada
   };
 
   guardarPartida(partida);
   celdas.forEach((c) => (c.disabled = true));
 }
 
-// Botones
+// 🔁 Botón Revancha
 btnRevancha.addEventListener("click", () => {
+  sonidoBoton.play();
   iniciarPartida();
 });
 
+// 🔄 Botón Nueva Partida
 btnNuevo.addEventListener("click", () => {
+  sonidoBoton.play();
   clearInterval(intervalo);
   form.style.display = "block";
   tablero.style.display = "none";
